@@ -1,0 +1,55 @@
+
+
+<%= form_with(model: recipe, local: true) do |form| %>
+  <% if recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+      <% recipe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :recipe_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dog_id %>
+    <%= form.select :dog_id, options_for_select(@dog_options), prompt: "Please Select" %>
+  </div>
+
+  <div class="field">
+    <table class="table" id="sort_ingredient">
+      <thead>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+    </tr>
+  </thead>
+
+    <tbody>
+      <%= form.collection_check_boxes :ingredient_ids,
+        Ingredient.all, :id, :name do |box| %>
+        <tr>
+          <td><%= box.check_box %>
+              <%= box.label %>
+          </td>
+          <td>
+            <%= box.object.category %>
+          </td>
+        </tr>  
+      <% end %>
+      </tbody>
+    </table> 
+   
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %> 
