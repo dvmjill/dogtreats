@@ -4,7 +4,7 @@
 <div id="welcome_background">
 
 
-<h1>Welcome to Treats!</h1>
+<h1>Welcome </h1>
 
 
 
@@ -13,8 +13,9 @@
 <p> And right below this line of text, you will find a way to sign out of this app. Please come again soon! </p>
 
 
-
- <%= link_to('Jill', dogs_path) %>
+<div class="blue">
+ <%= link_to('My Dogs', dogs_path) %>
+</div>
 
  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
 </div>
